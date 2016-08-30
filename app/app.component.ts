@@ -5,6 +5,7 @@ export class Timer {
 	hours: number;
 	minutes: number;
 	seconds: number;
+	enteredTime: string;
 }
 
 @Component({
@@ -16,11 +17,12 @@ export class Timer {
     	</div>
     	<div>
     		<label for='total'>Total Time: </label>
-    		<input id="total" [(ngModel)]="timer.totalTime" placeholder="total time">
+    		<input id="total" [(ngModel)]="timer.totalTime" (keyup)="onKeyUp()" placeholder="total time">
     	</div>
     	<button (click)="onStartStop()">Start/Stop</button>
     	<button (click)="onReset()">Reset</button>
     	`
+
 })
 export class AppComponent {
 	title = "Meeting Timer";
@@ -28,7 +30,8 @@ export class AppComponent {
 		totalTime: '00:00:00',
 		hours: 0,
 		minutes: 0,
-		seconds: 0
+		seconds: 0, 
+		enteredTime: ''
 	};
 
 	onStartStop(): void {
@@ -37,13 +40,16 @@ export class AppComponent {
 	}
 
 	onReset(): void {
-		// Stub out for now
-		// TODO: implement
+		this.timer.totalTime = this.timer.enteredTime;
 	}
 
 	onSelect(): void {
 		// Stub out for now
 		// TODO: implement		
+	}
+
+	onKeyUp(): void {
+		this.timer.enteredTime = this.timer.totalTime;
 	}
 
 }
