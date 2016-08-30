@@ -12,14 +12,14 @@ export class Timer {
     template: `
     	<h1>{{title}}</h1>
     	<div>
-    		You have <span>{{timer.totalTime}}</span> left.
+    		You have <span (click)="onSelect()">{{timer.totalTime}}</span> left.
     	</div>
     	<div>
     		<label for='total'>Total Time: </label>
     		<input id="total" [(ngModel)]="timer.totalTime" placeholder="total time">
     	</div>
-    	<button>Start/Stop</button>
-    	<button>Reset</button>
+    	<button (click)="onStartStop()">Start/Stop</button>
+    	<button (click)="onReset()">Reset</button>
     	`
 })
 export class AppComponent {
@@ -30,4 +30,20 @@ export class AppComponent {
 		minutes: 0,
 		seconds: 0
 	};
+
+	onStartStop(): void {
+		// Stub out for now
+		// TODO: implement
+	}
+
+	onReset(): void {
+		// Stub out for now
+		// TODO: implement
+	}
+
+	onSelect(): void {
+		// Stub out for now
+		// TODO: implement		
+	}
+
 }
