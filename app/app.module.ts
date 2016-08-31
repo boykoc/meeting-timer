@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { FormatTimePipe } from './format-time.pipe';
+import { TimerComponent } from './timer.component';
 
 @NgModule({
     imports: [ 
@@ -12,7 +13,8 @@ import { FormatTimePipe } from './format-time.pipe';
     ],
     declarations: [ 
     	AppComponent, 
-    	FormatTimePipe 
+    	FormatTimePipe,
+    	TimerComponent 
     ],
     bootstrap: [ AppComponent ]
 })
