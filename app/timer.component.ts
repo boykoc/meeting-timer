@@ -21,6 +21,17 @@ import { Timer } from './timer';
 export class TimerComponent {
 	@Input()
 	timer: Timer;
+	// timer: Timer = {
+	// 	totalTime: '1000',
+	// 	hours: 0,
+	// 	minutes: 0,
+	// 	seconds: 0, 
+	// 	enteredTime: '1000', 
+	// 	timeInMilliseconds: '',
+	// 	start: false, 
+	// 	interval: '',
+	// 	count_down_to: null
+	// };
 
 	onStartStop(): void {
 		if (this.timer.start) {
@@ -58,18 +69,16 @@ export class TimerComponent {
 		let millisecondsArray = (('0'.repeat(6) + this.timer.totalTime).slice(-6)).match(/.{1,2}/g);
 		// Convert hh mm ss to milliseconds.
 		let milliseconds = parseInt(millisecondsArray[0]) * 60 * 60 * 1000 + parseInt(millisecondsArray[1]) * 60 * 1000 + parseInt(millisecondsArray[2]) * 1000;
-		console.log(milliseconds);
 		this.timer.timeInMilliseconds = milliseconds.toString();
 	}
 
 	updateTimer(): void {
-		this.convertToMilliseconds();
 		let now = new Date();
-		let difference = this.timer.count_down_to.valueOf() - now.valueOf();
+		let difference: number = Math.round((this.timer.count_down_to.valueOf() - now.valueOf()) / 1000) * 1000;
 		this.timer.timeInMilliseconds = difference.toString();
-		this.timer.totalTime = ('0' + Math.floor(parseInt(this.timer.timeInMilliseconds) / (1000 * 60 * 60) % 24)).slice(-2).toString() + 
-			('0' + Math.floor(parseInt(this.timer.timeInMilliseconds) / (1000 * 60) % 60)).slice(-2).toString() +
-			('0' + Math.floor(parseInt(this.timer.timeInMilliseconds) / (1000) % 60)).slice(-2).toString();
+		this.timer.totalTime = ('0' + Math.floor(difference / (1000 * 60 * 60) % 24)).slice(-2).toString() + 
+			('0' + Math.floor(difference / (1000 * 60) % 60)).slice(-2).toString() +
+			('0' + Math.floor(difference / (1000) % 60)).slice(-2).toString();
 	}
 }
  
