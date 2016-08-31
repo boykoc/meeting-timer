@@ -3,13 +3,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
+import { FormatTimePipe } from './format-time.pipe';
 
 @NgModule({
     imports: [ 
     	BrowserModule, 
     	FormsModule 
     ],
-    declarations: [ AppComponent ],
+    declarations: [ 
+    	AppComponent, 
+    	FormatTimePipe 
+    ],
     bootstrap: [ AppComponent ]
 })
 export class AppModule { }
