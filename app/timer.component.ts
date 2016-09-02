@@ -1,24 +1,32 @@
 import { Component, Input } from '@angular/core';
-
+import { MdButtonModule } from '@angular2-material/button';
 import { Timer } from './timer';
 
 @Component({
     selector: 'my-timer',
     template: `
-    	<div>
-	    	<div>
-	    		You have <span (click)="onSelect()">{{timer.totalTime | formatTime}}</span> left.
-	    	</div>
-	    	<div>
-	    		<label for='total'>Total Time: </label>
-	    		<input id="total" [(ngModel)]="timer.totalTime" (keyup)="onKeyUp()" placeholder="total time">
-	    	</div>
-	    	<button (click)="onStartStop()">Start/Stop</button>
-	    	<button (click)="onReset()">Reset</button>
+    	<div class="timer">
+    		<div class="inner-container">
+		    	<div>
+		    		<span class="normal-text">{{timer.name}}</span> 
+		    		<span (click)="onSelect()" [ngStyle]="{'color': color, 'border-right': border}" class="large-text">{{timer.totalTime | formatTime}}</span> 
+		    		<span class="normal-text">time left</span>
+		    	</div>
+		    	<div class="visuallyHidden">
+		    		<label for='total'>Total Time: </label>
+		    		<input id="total" [(ngModel)]="timer.totalTime" (keyup)="onKeyUp()" placeholder="total time" [myFocus]="giveFocus" (blur)="onBlur()">
+		    	</div>
+		    	<button (click)="onStartStop()">Start/Stop</button>
+		    	<button (click)="onReset()">Reset</button>
+		    </div>
 	    </div>
     	`
 })
 export class TimerComponent {
+	private giveFocus: boolean;
+	private color: string;
+	private border: string;
+
 	@Input()
 	timer: Timer;
 	// timer: Timer = {
@@ -56,8 +64,15 @@ export class TimerComponent {
 	}
 
 	onSelect(): void {
-		// Stub out for now
-		// TODO: implement		
+		this.giveFocus = true;	
+		this.color = 'lightgray';
+		this.border = '1px solid black';
+	}
+
+	onBlur(): void {
+		this.giveFocus = false;
+		this.color = 'black';
+		this.border = 'none';
 	}
 
 	onKeyUp(): void {
