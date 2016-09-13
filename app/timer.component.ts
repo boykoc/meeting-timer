@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MdButtonModule } from '@angular2-material/button';
+
 import { Timer } from './timer';
 
 @Component({
@@ -7,9 +7,10 @@ import { Timer } from './timer';
     template: `
     	<div class="timer">
     		<div class="inner-container">
-		    	<div>
+		    	<div>                                
 		    		<span class="normal-text">{{timer.name}}</span> 
-		    		<span (click)="onSelect()" [ngStyle]="{'color': color, 'border-right': border}" class="large-text">{{timer.totalTime | formatTime}}</span> 
+				<span *ngIf="timer.negative" [ngStyle]="{'color': color}" class="large-text">&minus;</span>		    	
+				<span (click)="onSelect()" [ngStyle]="{'color': color, 'border-right': border}" class="large-text">{{timer.totalTime | formatTime}}</span> 
 		    		<span class="normal-text">time left</span>
 		    	</div>
 		    	<div class="visuallyHidden">
@@ -53,7 +54,11 @@ export class TimerComponent {
 			this.convertToMilliseconds();
 			//this.timer.count_down_to = new Date(new Date().getMilliseconds() + this.timer.timeInMilliseconds);
 			let d = new Date();
-			this.timer.count_down_to = d.setTime(d.getTime() + parseInt(this.timer.timeInMilliseconds));
+			if (this.timer.negative) {
+				this.timer.count_down_to = d.setTime(d.getTime() - parseInt(this.timer.timeInMilliseconds));
+                        } else {
+			        this.timer.count_down_to = d.setTime(d.getTime() + parseInt(this.timer.timeInMilliseconds));
+			}
 			this.timer.interval = setInterval(() => this.updateTimer(), 1000);
 		}
 		this.timer.start = !this.timer.start;		
@@ -64,6 +69,8 @@ export class TimerComponent {
 	}
 
 	onSelect(): void {
+		this.timer.start = false;
+                clearInterval(this.timer.interval);
 		this.giveFocus = true;	
 		this.color = 'lightgray';
 		this.border = '1px solid black';
@@ -76,6 +83,7 @@ export class TimerComponent {
 	}
 
 	onKeyUp(): void {
+		this.timer.negative = false;
 		this.timer.enteredTime = this.timer.totalTime;
 	}
 
@@ -90,10 +98,32 @@ export class TimerComponent {
 	updateTimer(): void {
 		let now = new Date();
 		let difference: number = Math.round((this.timer.count_down_to.valueOf() - now.valueOf()) / 1000) * 1000;
+		this.setColor(difference);
+		this.setNegative(difference);
+		// Convert to positive number using absolute value.
+		difference = Math.abs(difference);
 		this.timer.timeInMilliseconds = difference.toString();
 		this.timer.totalTime = ('0' + Math.floor(difference / (1000 * 60 * 60) % 24)).slice(-2).toString() + 
 			('0' + Math.floor(difference / (1000 * 60) % 60)).slice(-2).toString() +
 			('0' + Math.floor(difference / (1000) % 60)).slice(-2).toString();
+	}
+
+	private setNegative(difference: number): void {
+		if (difference < 0) {
+			this.timer.negative = true;
+		} else {
+			this.timer.negative = false;
+		}
+	}
+
+	private setColor(difference: number): void {
+		if (difference >= 0 && difference <= 30000) {
+			this.color = 'orange';
+		} else if (difference <= 0){
+			this.color = 'red';
+		} else {
+			this.color = 'black';
+		}
 	}
 }
  

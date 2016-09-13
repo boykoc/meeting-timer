@@ -1,8 +1,5 @@
 import { Component } from '@angular/core';
 
-import { MdInputModule } from '@angular2-material/input';
-import { MdCoreModule } from '@angular2-material/core';
-
 import { Timer } from './timer';
 
 @Component({
@@ -25,7 +22,8 @@ export class AppComponent {
 		start: false, 
 		interval: '',
 		count_down_to: null, 
-		name: 'Overall Meeting'
+		name: 'Overall Meeting',
+                negative: false
 	};
 	agendaItemTimer: Timer = {
 		totalTime: '1000',
@@ -37,6 +35,7 @@ export class AppComponent {
 		start: false, 
 		interval: '',
 		count_down_to: null, 
-		name: 'Current Agenda Item'
+		name: 'Current Agenda Item',
+                negative: false
 	};
 }
