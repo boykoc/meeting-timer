@@ -9,5 +9,5 @@ export class Timer {
 	interval: any;
 	count_down_to: any;
 	name: string;
-        negative: boolean;
+    negative: boolean;
 }

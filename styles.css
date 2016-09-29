@@ -49,6 +49,17 @@ button {
     color: #FFFFFF;
 }
 
+.negative-checkbox {
+	color: #757575;
+	position: absolute;
+    right: 16px;
+    bottom: -8px;
+}
+
+.negative-checkbox input {
+	vertical-align: middle;
+}
+
 .visuallyHidden {
 	height: 0;
 	overflow: hidden;

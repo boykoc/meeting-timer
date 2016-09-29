@@ -19,6 +19,10 @@ import { Timer } from './timer';
 		    	</div>
 		    	<button (click)="onStartStop()">Start/Stop</button>
 		    	<button (click)="onReset()">Reset</button>
+		    	<label for="nevative-input" class="negative-checkbox">
+		    		<input id="nagative-input" type="checkbox" [(ngModel)]="timer.negative" [disabled]="timer.start">
+		    		negative
+		    	</label>		    	
 		    </div>
 	    </div>
     	`
@@ -56,8 +60,8 @@ export class TimerComponent {
 			let d = new Date();
 			if (this.timer.negative) {
 				this.timer.count_down_to = d.setTime(d.getTime() - parseInt(this.timer.timeInMilliseconds));
-                        } else {
-			        this.timer.count_down_to = d.setTime(d.getTime() + parseInt(this.timer.timeInMilliseconds));
+            } else {
+			    this.timer.count_down_to = d.setTime(d.getTime() + parseInt(this.timer.timeInMilliseconds));
 			}
 			this.timer.interval = setInterval(() => this.updateTimer(), 1000);
 		}
@@ -71,7 +75,7 @@ export class TimerComponent {
 
 	onSelect(): void {
 		this.timer.start = false;
-                clearInterval(this.timer.interval);
+        clearInterval(this.timer.interval);
 		this.giveFocus = true;	
 		this.color = 'lightgray';
 		this.border = '1px solid black';
