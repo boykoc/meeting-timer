@@ -66,6 +66,7 @@ export class TimerComponent {
 
 	onReset(): void {
 		this.timer.totalTime = this.timer.enteredTime;
+		this.timer.negative = false;
 	}
 
 	onSelect(): void {
