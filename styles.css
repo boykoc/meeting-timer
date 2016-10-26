@@ -1,95 +1,119 @@
 /* Master Styles */
 body {
-	margin: 0;
-	font-family: 'Roboto','Helvetica','Arial',sans-serif!important;
-	font-size: 16px;
-	font-weight: 400;
-	background-color: #E3F2FD;
+  margin: 0;
+  font-family: 'Roboto','Helvetica','Arial',sans-serif!important;
+  font-size: 16px;
+  font-weight: 400;
+  background-color: #E3F2FD;
 }
 
 h1 {
-	font-weight: 300;
-    position: absolute;
-    width: 100%;
-    left: 0;
-    padding: 64px 8px;
-    background: #2196F3;
-    top: 0;
-    color: #FFFFFF;
-    box-sizing: border-box;
+  font-weight: 300;
+  width: 100%;
+  padding: 64px 8px;
+  background: #2196F3;
+  color: #FFFFFF;
+  box-sizing: border-box;
+  margin: 0;
 }
 
 .container {
-	padding: 148px 8px 8px 8px;
-	min-height: 50%;
+  margin: -6vh 8px 0 8px;
 }
 
 .header-bar {
-	background-color: #1565C0;
-	min-height: 2em;
-}
-
-.timer {
-	text-align: center;
+  background-color: #1565C0;
+  min-height: 2em;
 }
 
 .timer div span.large-text {
-	font-size: 52px;
-	font-weight: 300;
+  font-size: 82px;
+  font-weight: 300;
 }
 
 button {
-	background: #2196F3;
-    margin: 8px;
-    border: none;
-    padding: 8px;
-    border-radius: 3px;
-    text-transform: uppercase;
-    font-weight: 500;
-    color: #FFFFFF;
+  background: #2196F3;
+  margin: 8px;
+  border: none;
+  padding: 8px;
+  border-radius: 3px;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: #FFFFFF;
+}
+
+button[disabled][disabled] {
+  color: rgba(0,0,0,.26);
+  background-color: rgba(0,0,0,.12);
 }
 
 .negative-checkbox {
-	color: #757575;
-	position: absolute;
-    right: 16px;
-    bottom: -8px;
+  color: #757575;
+  position: absolute;
+  right: 16px;
+  bottom: 8px;
 }
 
 .negative-checkbox input {
-	vertical-align: middle;
+  vertical-align: middle;
 }
 
 .visuallyHidden {
-	height: 0;
-	overflow: hidden;
+  height: 0;
+  overflow: hidden;
 }
 
 .timer {
-	max-width: 650px;
-	margin: -20px auto 32px;
-	box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
-	background-color: #FFFFFF;
-	min-height: 200px;
-	border-radius: 2px;
-	padding: 16px;
-	position: relative;
-	box-sizing: border-box;
+  text-align: center;
+  max-width: 650px;
+  margin: 16px auto 32px;
+  box-shadow: 0 2px 2px 0 rgba(0,0,0,.14), 0 3px 1px -2px rgba(0,0,0,.2), 0 1px 5px 0 rgba(0,0,0,.12);
+  background-color: #FFFFFF;
+  min-height: 252px;
+  border-radius: 2px;
+  position: relative;
+  box-sizing: border-box;
 }
 
 .inner-container {
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	width: 100%;
-	margin-right: 0;
-	margin-left: 0;
+  width: 100%;
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.actions, .timer-output {
+  padding: 16px;
 }
 
 .normal-text {
-	font-size: 16px;
-	font-weight: 400;
-	margin-bottom: 8px;
-	display: block;
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.timer-bar {
+  height: 3px;
+  width: 0%;
+}
+
+.timer-bar-animation {
+  background-color: #1565C0;
+  -webkit-animation-name: timer-bar-animation;
+  -webkit-animation-timing-function: linear;
+  -webkit-animation-fill-mode: forwards;
+}
+
+.timer-paused {
+  background-color: #ccc;
+  -webkit-animation-play-state: paused;
+}
+
+@-webkit-keyframes timer-bar-animation {
+  0% { 
+    width: 0%; 
+  }
+  100% { 
+    width: 100%; 
+  }
 }

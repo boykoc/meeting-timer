@@ -5,37 +5,33 @@ import { Timer } from './timer';
 @Component({
   selector: 'my-app',
   template: `
-	<h1>{{title}}</h1>	
-	<my-timer [timer]="agendaItemTimer" class="agendaItemTimer"></my-timer>
-	<my-timer [timer]="overallMeetingTimer" class="overallMeetingTimer"></my-timer>
-    `
+		<h1>{{title}}</h1>	
+		<div class="container">
+			<my-timer [timer]="agendaItemTimer" class="agendaItemTimer"></my-timer>
+			<my-timer [timer]="overallMeetingTimer" class="overallMeetingTimer"></my-timer>
+		</div>
+  `
 })
 export class AppComponent {
 	title = "Meeting Timer";
 	overallMeetingTimer: Timer = {
-		totalTime: '1000',
-		hours: 0,
-		minutes: 0,
-		seconds: 0, 
-		enteredTime: '1000', 
-		timeInMilliseconds: '',
+		hhmmss: '100', 
+		enteredTime: '100', 
+		endTime: 0,
+		difference: 60000,
 		start: false, 
 		interval: '',
-		count_down_to: null, 
 		name: 'Overall Meeting',
-                negative: false
+    negative: false
 	};
 	agendaItemTimer: Timer = {
-		totalTime: '1000',
-		hours: 0,
-		minutes: 0,
-		seconds: 0, 
-		enteredTime: '1000', 
-		timeInMilliseconds: '',
+		hhmmss: '100',
+		enteredTime: '100',
+		endTime: 0,
+		difference: 60000,
 		start: false, 
 		interval: '',
-		count_down_to: null, 
 		name: 'Current Agenda Item',
-                negative: false
+    negative: false
 	};
 }
