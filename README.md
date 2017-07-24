@@ -1,5 +1,7 @@
 # MeetingTimer
 
+This is a meeting timer that lets you time the overall meeting time as well as individual agenda item times. You can [view a live demo](https://boykoc.github.io/meeting-timer/) of this project.
+
 This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.18.
 
 ## Development server
