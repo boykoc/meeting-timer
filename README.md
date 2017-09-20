@@ -2,10 +2,13 @@
 
 This is a meeting timer that lets you time the overall meeting time as well as individual agenda item times. **You can [view a live demo](https://boykoc.github.io/meeting-timer/) of this project.**
 
-This project was generated with [angular-cli](https://github.com/angular/angular-cli) version 1.0.0-beta.18.
+This project is currently using anglular-cli version 1.4.2 and angular version 4.2.4.
 
 ## Development server
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+
+If running on a VM try `ng serve --host 0.0.0.0 --port 4200 --prod`. Using the `--prod` option will help compile Angular to catch any errors/warnings that may only appear when building a production version.
 
 ## Code scaffolding
 
@@ -26,8 +29,6 @@ Before running the tests make sure you are serving the app via `ng serve`.
 
 ## Deploying to Github Pages
 
-Run `ng github-pages:deploy` to deploy to Github Pages.
+This project currently uses `angular-cli-ghpages`.
 
-## Further help
-
-To get more help on the `angular-cli` use `ng --help` or go check out the [Angular-CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+After pushing changes to master, run `ng build --prod --base-href "https://boykoc.github.io/meeting-timer/"` then `angular-cli-ghpages`.
