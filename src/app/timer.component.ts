@@ -50,7 +50,6 @@ export class TimerComponent {
       this.start();
     }
     this.timer.start = !this.timer.start;
-    console.log(this.timer.negative)
   }
 
   onReset(): void {
@@ -103,13 +102,10 @@ export class TimerComponent {
     this.showTimerPaused = !this.showTimerPaused;
     clearInterval(this.timer.interval); 
     this.timer.difference = Math.abs(this.timer.endTime - window.performance.now());    
-    console.log("STOP: " + this.timer.difference);    
   }
 
   updateTimer(): void {
     if (this.firstInterval) {
-      console.log("NEGATIVE UPDATE: " + this.timer.negative);
-      console.log("NEGATIVE UPDATE: " + this.timer.difference);
       if (this.timer.negative) {
         this.timer.endTime = window.performance.now() - this.timer.difference - 100; // subtract 100ms
         this.timer.difference = this.timer.difference < 0 ? this.timer.difference : -this.timer.difference;
@@ -117,18 +113,14 @@ export class TimerComponent {
         this.timer.endTime = window.performance.now() + this.timer.difference - 100; // subtract 100ms
       }
       this.firstInterval = !this.firstInterval;
-      console.log("first round")
     } else {   
       this.timer.difference = this.timer.endTime - window.performance.now();
     }
     this.setColor(this.timer.difference);
-    console.log("BEFORE SET NEGATIVE: " + this.timer.difference);
     this.setNegative(this.timer.difference);
     // Convert to positive number using absolute value.
     this.timer.difference = Math.abs(this.timer.difference);
     this.sethmmss(this.timer.difference);
-    console.log("hhmmss: " + this.timer.hhmmss);
-    console.log("Loop: " + this.timer.difference);
   }
 
   private convertToMilliseconds(time: string): number {
