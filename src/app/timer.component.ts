@@ -65,6 +65,7 @@ export class TimerComponent {
   onSelect(): void {
     this.timer.start = false;
     clearInterval(this.timer.interval);
+    this.showTimerPaused = true;
     this.giveFocus = true;  
     this.color = 'lightgray';
     this.border = '1px solid black';
