@@ -31,12 +31,12 @@ import { Timer } from './timer';
     `
 })
 export class TimerComponent {
-  private giveFocus: boolean;
-  private color: string;
-  private border: string;
-  private animationDuration: number;
-  private showTimerPaused: boolean = true;
-  private showTimerAnimation: boolean = false;
+  public giveFocus: boolean;
+  public color: string;
+  public border: string;
+  public animationDuration: number;
+  public showTimerPaused: boolean = true;
+  public showTimerAnimation: boolean = false;
 
   private firstInterval: boolean;
 
